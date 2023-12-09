@@ -2,7 +2,7 @@ resource "aws_lb" "main" {
   name               = "${var.env}-alb"
   internal           = var.internal
   load_balancer_type = var.lb_type
-  security_groups    = [aws_security_group.lb_sg.id]
+  security_groups    = [aws_security_group.main.id]
   subnets            = [for subnet in aws_subnet.public : subnet.id]
 
   enable_deletion_protection = true
@@ -24,6 +24,7 @@ resource "aws_security_group" "allow_tls" {
   name        = "${var.env}-alb-sg"
   description = "${var.env}-alb-sg"
   vpc_id      = var.vpc_id
+  tags = merge(local.tags),{name = "${var.env}-alb-sg"})
 
   ingress {
     description      = "TLS from VPC"
