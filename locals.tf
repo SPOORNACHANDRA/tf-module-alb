@@ -1,4 +1,4 @@
 locals {
   tags = merge(var.tags, {tf-module-name = "alb"},{env=var.env})
-  app_subnets =
+#  app_subnets =
 }
