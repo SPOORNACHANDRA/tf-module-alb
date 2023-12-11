@@ -12,8 +12,8 @@ resource "aws_lb" "main" {
 
 
 resource "aws_security_group" "main" {
-  name        = "${var.env}-alb-sg"
-  description = "${var.env}-alb-sg"
+  name        = local.sg_name
+  description = local.sg_name
   vpc_id      = var.vpc_id
   tags = merge(local.tags,{name = "${var.env}-alb-sg"})
 
