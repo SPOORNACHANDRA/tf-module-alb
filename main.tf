@@ -18,7 +18,7 @@ resource "aws_security_group" "main" {
   tags = merge(local.tags,{name = "${var.env}-alb-sg"})
 
   ingress {
-    description      = "TLS from VPC"
+    description      = "APP"
     from_port        = var.sg_port
     to_port          = var.sg_port
     protocol         = "tcp"
